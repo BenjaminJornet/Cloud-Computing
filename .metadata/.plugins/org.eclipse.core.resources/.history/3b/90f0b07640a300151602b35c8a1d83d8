@@ -1,0 +1,13 @@
+var app = angular.module('myapp', []);
+app.controller('myController1',
+		['$scope',function($scope){
+			$scope.userList=[
+			{fullName:'john Doe',login:'jDoe'},
+			{fullName:'ted Smith',login:'tSmith'},
+			{fullName:'lucy Yang',login:'lYang'}];
+		}]);
+
+app.controller('myController2',
+		['$scope',function($scope){
+			$scope.infoMsg='WELCOME USER';
+		}]);

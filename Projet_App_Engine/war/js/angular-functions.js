@@ -1,0 +1,39 @@
+var app = angular.module('myapp', []);
+
+app.controller('UsernameController',
+		['$scope',function($scope){
+			$scope.id = "";		
+			$scope.name = "";
+			$scope.image_url = "";
+			$scope.email = "";
+			$scope.connected = "";
+			
+			$scope.updateId = function(Id){
+				$scope.id = Id;
+		    };
+		    
+			$scope.updateName = function(Name){
+				$scope.name = Name;
+		    };
+		    
+			$scope.updateImUrl = function(Image_url){
+				$scope.image_url = Image_url;
+		    };
+		    
+			$scope.updateEmail = function(Email){
+				$scope.email = Email;
+		    };
+		    
+			$scope.updateConnected = function(Connected){
+				$scope.connected = Connected;
+		    };
+		    
+			$scope.update = function(Id, Name, Image_url, Email, Connected){
+				$scope.id = Id;
+				$scope.name = Name;
+				$scope.image_url = Image_url;
+				$scope.email = Email;
+				$scope.connected = Connected;
+		    };
+		}]
+);

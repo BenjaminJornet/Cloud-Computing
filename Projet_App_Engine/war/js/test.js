@@ -1,4 +1,9 @@
 var CLIENT_ID;
+var ID;
+var NAME;
+var IMAGE_URL;
+var EMAIL;
+var CONNECTED = false;
 
 $( document ).ready(function() {
 	$.get("/addWelcome?msg=Bonjour et bienvenue sur notre site d'eCoaching!",function(data){
@@ -88,28 +93,39 @@ function onSignIn(googleUser) {
 		  });
 	});
 	*/
-	
 	console.log("OnSignIn called");
     // Useful data for your client-side scripts:
     var profile = googleUser.getBasicProfile();
     console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    ID = profile.getId();
+    $scope.updateId(ID);
     console.log("Name: " + profile.getName());
+    NAME =  profile.getName();
+    $scope.updateName(NAME);
     console.log("Image URL: " + profile.getImageUrl());
+    IMAGE_URL = profile.getImageUrl();
+    $scope.updateImUrl(IMAGE_URL);
     console.log("Email: " + profile.getEmail());
+    EMAIL = profile.getEmail();
+    $scope.updateEmail(EMAIL);
 
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + id_token);
     CLIENT_ID = id_token;
+    $scope.updateConnected(CONNECTED);
     
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/validateToken');
+    xhr.open('POST', '/validateToken');  // On invoque la méthode post de la servlet
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
       console.log('Signed in as: ' + xhr.responseText);
     };
     xhr.send('idtoken=' + id_token);
-    
+    console.log("*********************************");
+    CONNECTED = true;
+    $scope.updateConnected(CONNECTED);
+    console.log("Connected set to true");
     /*
 	$.post("/validateToken",function(data){
 		console.log( "ready!" + data);
@@ -152,6 +168,10 @@ function onSignIn(googleUser) {
 	    auth2.signOut().then(function () {
 	      console.log('User signed out.');
 	    });
+	    console.log("*********************************");
+	    CONNECTED = false;
+	    $scope.updateConnected(CONNECTED);
+	    console.log("Connected set to false");
 	  }
   
  

@@ -1,0 +1,171 @@
+var CLIENT_ID;
+var ID;
+var NAME;
+var IMAGE_URL;
+var EMAIL;
+var CONNECTED = false;
+
+$( document ).ready(function() {
+	$.get("/addWelcome?msg=Bonjour et bienvenue sur notre site d'eCoaching!",function(data){
+		console.log( "ready!" + data);
+		$('#mess').text(data);
+	});
+});
+
+
+/*
+(function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/client:plusone.js?onload=signinCallback';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+ })();
+ function signinCallback(authResult) {
+       if (authResult['status']['signed_in']) {
+               document.getElementById('signinButton').setAttribute('style', 'display: none');
+                   makeAPICall();
+       } else {
+           console.log('Sign-in state: ' + authResult['error']);
+       }
+ }
+       function makeAPICall(){
+       gapi.client.load('plus', 'v1', function() {
+         var request = gapi.client.plus.people.get({
+           'userId': 'me'
+         });
+         request.execute(function (resp){
+           console.log(resp);
+           if(resp.id){
+             console.log('ID: ' + resp.id);
+           }
+           if(resp.displayName){
+             console.log('Display Name: ' + resp.displayName);
+           }
+           if(resp.image && resp.image.url){
+             console.log('Image URL: ' + resp.image.url);
+           }
+           if(resp.url){
+             console.log('Profile URL: ' + resp.url);
+           }
+         });
+      });
+ }  
+       */
+
+      /* 
+//auth2 is initialized with gapi.auth2.init() and a user is signed in.
+
+if (auth2.isSignedIn.get()) {
+  var profile = auth2.currentUser.get().getBasicProfile();
+  console.log('ID: ' + profile.getId());
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+}
+*/
+/*
+gapi.load('auth2', function() {
+	  var auth2 = gapi.auth2.init({
+	    client_id: 'CLIENT_ID.apps.googleusercontent.com',
+	    fetch_basic_profile: true, // To use the getBasicProfile() method
+	    scope: 'profile'
+	  });
+
+	  // Sign the user in, and then retrieve their ID.
+	  auth2.signIn().then(function() {
+	    console.log(auth2.currentUser.get().getId());
+	  });
+});
+
+*/
+function onSignIn(googleUser) {
+	/*
+	gapi.load('auth2', function() {
+		  var client_ident = CLIENT_ID + '.apps.googleusercontent.com';
+		  var auth2 = gapi.auth2.init({
+		    client_id: client_ident,
+		    fetch_basic_profile: true, // To use the getBasicProfile() method
+		    scope: 'profile'
+		  });
+
+		  // Sign the user in, and then retrieve their ID.
+		  auth2.signIn().then(function() {
+		    console.log(auth2.currentUser.get().getId());
+		  });
+	});
+	*/
+	
+	console.log("OnSignIn called");
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    ID = profile.getId();
+    console.log("Name: " + profile.getName());
+    NAME =  profile.getName();
+    console.log("Image URL: " + profile.getImageUrl());
+    IMAGE_URL = profile.getImageUrl();
+    console.log("Email: " + profile.getEmail());
+    EMAIL = profile.getEmail();
+
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+    CLIENT_ID = id_token;
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/validateToken');  // On invoque la méthode post de la servlet
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      console.log('Signed in as: ' + xhr.responseText);
+    };
+    xhr.send('idtoken=' + id_token);
+    console.log("*********************************");
+    CONNECTED = true;
+    console.log("Connected set to true");
+    /*
+	$.post("/validateToken",function(data){
+		console.log( "ready!" + data);
+		$('#googleConnexion').text(data);
+	});
+	*/
+  };
+  
+  /**
+   * Handler for the signin callback triggered after the user selects an account.
+   */
+  function onSignInCallback(resp) {
+    gapi.client.load('plus', 'v1', apiClientLoaded);
+  }
+
+  /**
+   * Sets up an API call after the Google API client loads.
+   */
+  function apiClientLoaded() {
+    gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);
+  }
+
+  /**
+   * Response callback for when the API client receives a response.
+   *
+   * @param resp The API response object with the user email and profile information.
+   */
+  function handleEmailResponse(resp) {
+    var primaryEmail;
+    for (var i=0; i < resp.emails.length; i++) {
+      if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
+    }
+    document.getElementById('responseContainer').value = 'Primary email: ' +
+        primaryEmail + '\n\nFull Response:\n' + JSON.stringify(resp);
+  }
+  
+
+  function signOut() {
+	    var auth2 = gapi.auth2.getAuthInstance();
+	    auth2.signOut().then(function () {
+	      console.log('User signed out.');
+	    });
+	    console.log("*********************************");
+	    CONNECTED = false;
+	    console.log("Connected set to false");
+	  }
+  
+ 

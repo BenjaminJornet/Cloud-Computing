@@ -1,0 +1,17 @@
+var app = angular.module('myapp', []);
+app.controller('myController1',
+		['$scope',function($scope){
+			$scope.id = ID;		
+			$scope.name = NAME;
+			$scope.image_url = IMAGE_URL;
+			$scope.email = EMAIL;
+		}]);
+				
+			/*
+			userList=[
+			{fullName:'john Doe',login:'jDoe'},
+			{fullName:'ted Smith',login:'tSmith'},
+			{fullName:'lucy Yang',login:'lYang'}];
+		}]);
+*/
+

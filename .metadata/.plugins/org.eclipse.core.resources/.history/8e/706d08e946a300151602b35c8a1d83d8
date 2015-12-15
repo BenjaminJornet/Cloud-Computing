@@ -1,0 +1,26 @@
+var app = angular.module('myapp', []);
+app.controller('UsernameController',
+		['$scope',function($scope){
+			$scope.id = "";		
+			$scope.name = "";
+			$scope.image_url = "";
+			$scope.email = "";
+			$scope.connected = "";
+			
+			$scope.update = function(){
+				$scope.id = ID;
+				$scope.name = NAME;
+				$scope.image_url = IMAGE_URL;
+				$scope.email = EMAIL;
+				$scope.connected = CONNECTED;
+		    };
+		}]);
+				
+			/*
+			userList=[
+			{fullName:'john Doe',login:'jDoe'},
+			{fullName:'ted Smith',login:'tSmith'},
+			{fullName:'lucy Yang',login:'lYang'}];
+		}]);
+*/
+
