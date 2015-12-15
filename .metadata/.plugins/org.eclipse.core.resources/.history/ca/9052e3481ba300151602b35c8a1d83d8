@@ -73,7 +73,7 @@ gapi.load('auth2', function() {
 
 */
 function onSignIn(googleUser) {
-	/*
+	
 	gapi.load('auth2', function() {
 		  var client_ident = CLIENT_ID + '.apps.googleusercontent.com';
 		  var auth2 = gapi.auth2.init({
@@ -87,7 +87,6 @@ function onSignIn(googleUser) {
 		    console.log(auth2.currentUser.get().getId());
 		  });
 	});
-	*/
 	
 	console.log("OnSignIn called");
     // Useful data for your client-side scripts:
@@ -102,20 +101,11 @@ function onSignIn(googleUser) {
     console.log("ID Token: " + id_token);
     CLIENT_ID = id_token;
     
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/validateToken');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-      console.log('Signed in as: ' + xhr.responseText);
-    };
-    xhr.send('idtoken=' + id_token);
     
-    /*
 	$.post("/validateToken",function(data){
 		console.log( "ready!" + data);
 		$('#googleConnexion').text(data);
 	});
-	*/
   };
   
   /**

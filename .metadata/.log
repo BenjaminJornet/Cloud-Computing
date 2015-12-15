@@ -745,3 +745,83 @@ Navigate to the console view for "Datanucleus Enhancer" for more information
 
 !ENTRY com.android.ide.eclipse.adt 2 0 2015-12-15 11:45:12.871
 !MESSAGE No projects found for [/home/benjaminjornet/HD_Cloud/Cloud-Computing/Projet_App_Engine/war/WEB-INF/appengine-web.xml]
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2015-12-15 12:04:46.388
+!MESSAGE Datanucleus enhancer terminated with exit code 1.
+Navigate to the console view for "Datanucleus Enhancer" for more information
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2015-12-15 14:06:12.466
+!MESSAGE Unable to update app: Error posting to URL: https://appengine.google.com/api/appversion/getresourcelimits?app_id=Projet_Google_App_Engine&version=1&
+400 Bad Request
+Client Error (400)The request is invalid for an unspecified reason.
+
+
+See the deployment console for more details
+!STACK 0
+com.google.appengine.tools.admin.AdminException: Unable to update app: Error posting to URL: https://appengine.google.com/api/appversion/getresourcelimits?app_id=Projet_Google_App_Engine&version=1&
+400 Bad Request
+Client Error (400)The request is invalid for an unspecified reason.
+
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:578)
+	at com.google.appengine.tools.admin.AppAdminImpl.update(AppAdminImpl.java:58)
+	at com.google.appengine.eclipse.core.proxy.AppEngineBridgeImpl.deploy(AppEngineBridgeImpl.java:433)
+	at com.google.appengine.eclipse.core.deploy.DeployProjectJob.runInWorkspace(DeployProjectJob.java:158)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: com.google.appengine.tools.admin.HttpIoException: Error posting to URL: https://appengine.google.com/api/appversion/getresourcelimits?app_id=Projet_Google_App_Engine&version=1&
+400 Bad Request
+Client Error (400)The request is invalid for an unspecified reason.
+
+	at com.google.appengine.tools.admin.AbstractServerConnection.send1(AbstractServerConnection.java:336)
+	at com.google.appengine.tools.admin.AbstractServerConnection.send(AbstractServerConnection.java:287)
+	at com.google.appengine.tools.admin.AbstractServerConnection.post(AbstractServerConnection.java:266)
+	at com.google.appengine.tools.admin.LoggingClientDeploySender.send(LoggingClientDeploySender.java:47)
+	at com.google.appengine.tools.admin.ResourceLimits.remoteRequest(ResourceLimits.java:173)
+	at com.google.appengine.tools.admin.ResourceLimits.request(ResourceLimits.java:139)
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:565)
+	... 5 more
+
+!ENTRY com.google.appengine.eclipse.core 4 0 2015-12-15 14:09:04.324
+!MESSAGE Unable to update app: Failed to compile jsp files.
+
+See the deployment console for more details
+!STACK 0
+com.google.appengine.tools.admin.AdminException: Unable to update app: Failed to compile jsp files.
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:578)
+	at com.google.appengine.tools.admin.AppAdminImpl.update(AppAdminImpl.java:58)
+	at com.google.appengine.eclipse.core.proxy.AppEngineBridgeImpl.deploy(AppEngineBridgeImpl.java:433)
+	at com.google.appengine.eclipse.core.deploy.DeployProjectJob.runInWorkspace(DeployProjectJob.java:158)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: com.google.appengine.tools.admin.JspCompilationException: Failed to compile jsp files.
+	at com.google.appengine.tools.admin.Application.compileJsps(Application.java:892)
+	at com.google.appengine.tools.admin.Application.populateStagingDirectory(Application.java:687)
+	at com.google.appengine.tools.admin.Application.createStagingDirectory(Application.java:629)
+	at com.google.appengine.tools.admin.AppAdminImpl.doUpdate(AppAdminImpl.java:569)
+	... 5 more
+
+!ENTRY com.google.appengine.eclipse.core 1 0 2015-12-15 14:09:59.939
+!MESSAGE Projet_App_Engine successfully deployed to Google App Engine
+
+!ENTRY com.google.gdt.eclipse.suite.ext 1 0 2015-12-15 14:10:00.226
+!MESSAGE Sending POST request to Analytics: {cd7=NOT_USED, cd5=true, cd6=GAE 1.9.25, cd3=3.8.101.v20130717-0806, cd4=com.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43, cd1=org.eclipse.epp.package.jee.product, cd2=F976DDCD987D0842E07108D4CD6395C9B7FE8962, ea=DEPLOY_GAE, cid=1447409187886, cd9=false, ec=com.google.gdt.eclipse.core, v=1, t=event, el=id=1447409187886&ev=3.8.101.v20130717-0806&v=com.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43&gaev=1.9.25&p=org.eclipse.epp.package.jee.product&action=gae_backend_deploy&appIdHash=F976DDCD987D0842E07108D4CD6395C9B7FE8962&isGoogleCloudSqlUsed=false&isSignedIn=true, cd10=1447409187886, an=Google Plugin for Eclipse, tid=UA-43239122-1}
+
+!ENTRY com.google.gdt.eclipse.suite.ext 1 0 2015-12-15 14:10:00.227
+!MESSAGE Analytics ping request parameters: cd7=NOT_USED&cd5=true&cd6=GAE%201.9.25&cd3=3.8.101.v20130717-0806&cd4=com.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43&cd1=org.eclipse.epp.package.jee.product&cd2=F976DDCD987D0842E07108D4CD6395C9B7FE8962&ea=DEPLOY_GAE&cid=1447409187886&cd9=false&ec=com.google.gdt.eclipse.core&v=1&t=event&el=id%3D1447409187886%26ev%3D3.8.101.v20130717-0806%26v%3Dcom.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43%26gaev%3D1.9.25%26p%3Dorg.eclipse.epp.package.jee.product%26action%3Dgae_backend_deploy%26appIdHash%3DF976DDCD987D0842E07108D4CD6395C9B7FE8962%26isGoogleCloudSqlUsed%3Dfalse%26isSignedIn%3Dtrue&cd10=1447409187886&an=Google%20Plugin%20for%20Eclipse&tid=UA-43239122-1
+
+!ENTRY com.google.gdt.eclipse.suite.ext 1 0 2015-12-15 14:10:00.625
+!MESSAGE Analytics ping response: 200: OK
+GIF89a  �� ���   ,       D ;
+
+!ENTRY com.google.appengine.eclipse.core 1 0 2015-12-15 14:15:02.808
+!MESSAGE Projet_App_Engine successfully deployed to Google App Engine
+
+!ENTRY com.google.gdt.eclipse.suite.ext 1 0 2015-12-15 14:15:02.845
+!MESSAGE Sending POST request to Analytics: {cd7=NOT_USED, cd5=true, cd6=GAE 1.9.25, cd3=3.8.101.v20130717-0806, cd4=com.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43, cd1=org.eclipse.epp.package.jee.product, cd2=F976DDCD987D0842E07108D4CD6395C9B7FE8962, ea=DEPLOY_GAE, cid=1447409187886, cd9=false, ec=com.google.gdt.eclipse.core, v=1, t=event, el=id=1447409187886&ev=3.8.101.v20130717-0806&v=com.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43&gaev=1.9.25&p=org.eclipse.epp.package.jee.product&action=gae_backend_deploy&appIdHash=F976DDCD987D0842E07108D4CD6395C9B7FE8962&isGoogleCloudSqlUsed=false&isSignedIn=true, cd10=1447409187886, an=Google Plugin for Eclipse, tid=UA-43239122-1}
+
+!ENTRY com.google.gdt.eclipse.suite.ext 1 0 2015-12-15 14:15:02.847
+!MESSAGE Analytics ping request parameters: cd7=NOT_USED&cd5=true&cd6=GAE%201.9.25&cd3=3.8.101.v20130717-0806&cd4=com.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43&cd1=org.eclipse.epp.package.jee.product&cd2=F976DDCD987D0842E07108D4CD6395C9B7FE8962&ea=DEPLOY_GAE&cid=1447409187886&cd9=false&ec=com.google.gdt.eclipse.core&v=1&t=event&el=id%3D1447409187886%26ev%3D3.8.101.v20130717-0806%26v%3Dcom.google.gdt.eclipse.suite.e43.feature_3.8.0.v201410302155-rel-r43%26gaev%3D1.9.25%26p%3Dorg.eclipse.epp.package.jee.product%26action%3Dgae_backend_deploy%26appIdHash%3DF976DDCD987D0842E07108D4CD6395C9B7FE8962%26isGoogleCloudSqlUsed%3Dfalse%26isSignedIn%3Dtrue&cd10=1447409187886&an=Google%20Plugin%20for%20Eclipse&tid=UA-43239122-1
+
+!ENTRY com.google.gdt.eclipse.suite.ext 1 0 2015-12-15 14:15:02.979
+!MESSAGE Analytics ping response: 200: OK
+GIF89a  �� ���   ,       D ;

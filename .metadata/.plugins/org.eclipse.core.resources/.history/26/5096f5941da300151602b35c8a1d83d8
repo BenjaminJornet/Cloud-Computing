@@ -103,7 +103,7 @@ function onSignIn(googleUser) {
     CLIENT_ID = id_token;
     
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/validateToken');
+    xhr.open('POST', 'localhost:8888/validateToken');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onload = function() {
       console.log('Signed in as: ' + xhr.responseText);

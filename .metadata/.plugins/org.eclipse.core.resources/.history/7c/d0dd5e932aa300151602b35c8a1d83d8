@@ -1,4 +1,4 @@
-/*
+
 "use strict";
 function hash() {
     var obj = {};
@@ -35,4 +35,3 @@ $.ajax({
 		  }
 	});
 }
-*/

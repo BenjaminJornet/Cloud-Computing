@@ -5,4 +5,3 @@ gaeDeployDialogSettings=
 gaeHrdEnabled=true
 gaeLaunchAppInBrowser=true
 googleCloudSqlEnabled=false
-localDevMySqlEnabled=true
