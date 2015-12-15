@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="addTrainingApp" ng-controller="addTrainingCtrl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +8,11 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link href="lib/select2-3.5.1/select2.css" rel="stylesheet">
+<!--       <link href="lib/select2-3.5.1/select2.css" rel="stylesheet"> -->
       
     <link href="css/js.css" rel="stylesheet">
       
-
+	
   </head>
   <body>
       
@@ -20,7 +20,7 @@
       <nav class="navbar navbar-inverse" role="navigation">
         <div class=" col-md-10 col-sm-10 col-xs-10 ">
             <form class="navbar-form navbar-left"  style="width:100%" role="search">
-                 <button type="submit" class="btn btn-link " style="margin:0px,padding:0px"><span class="glyphicon glyphicon-arrow-left "></span> </button>
+                 <a type="submit" class="button" href="ha-search-screen.html" style="margin:0px,padding:0px"><span class="glyphicon glyphicon-arrow-left "></span> </a>
                  <label> <h5 style="color:white"> Add a Training Plan</h5></label>
           </form>
         </div>
@@ -33,7 +33,7 @@
         </div>
       </nav>
       <!-- ------------------------------------------- HEADER ZONE END ------------------------------------------- -->
-      
+                
       <form role="form">
           <div class="row" style="margin-bottom:10px">
               <div class=" col-md-1 col-sm-0 col-xs-0 " ></div>
@@ -43,9 +43,10 @@
             <div class=" col-md-6 col-sm-6 col-xs-12 ">
                 <input type="email" class="form-control" id="inputTitle" placeholder="Enter your Training plan title">
              </div>
+   
               <div class=" col-md-3 col-sm-4 hidden-xs">
                   <div class=" col-md-4 col-sm-4 hidden-xs">
-                     <p id="totalTimeValue"><span class="glyphicon glyphicon-time"></span> 1:20:15</p>
+                     <p id="totalTimeValue"><span class="glyphicon glyphicon-time"></span> {{trainingPlan.h_dure}}  :  {{trainingPlan.m_dure}}</p>
                   </div>
              </div>
         </div>
@@ -82,7 +83,7 @@
               
               <div class="row">
                   <div class=" col-md-1 col-sm-1 col-xs-1 " >
-                       <button type="button" class="btn btn-success">Add an Exercice</button>
+                       <button type="button" class="btn btn-success" ng-click="addTraining(ex)">Add an Exercice</button>
                    </div>
                  <div class=" col-md-12 col-sm-12 col-xs-12 " ></div>
               </div>
@@ -92,16 +93,15 @@
                         <label for="titleDescription">Ex. Title</label>  
                     </div>
                     <div class=" col-md-6 col-sm-6 col-xs-12 ">
-                        <input type="email" class="form-control" id="titleDescription" placeholder="Enter your exercice title">
+                        <input type="text" class="form-control" id="titleDescription" placeholder="Enter your exercice title" ng-model="ex.title">
                     </div>
                     <div class=" col-md-2 col-sm-4 col-xs-12 ">
                         <div class="input-group">
-                            <input type="text" class="form-control">
-                            <span class="input-group-addon" style="padding:0px">:</span>
-                           <input type="text" class="form-control">
-                          <span class="input-group-addon" style="padding:0px">:</span>
-                          <input type="text" class="form-control">
-
+                            <select ng-model="ex.heure"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option></select>
+							<span>heures et </span>
+                            <select ng-model="ex.minute"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option><option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option><option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option><option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option><option value="58">58</option><option value="59">59</option><option value="60">60</option></select>
+							<span>minutes</span>
+<!--                           <input type="text" class="form-control"> -->
                         </div>
                     </div>
                 </div>
@@ -111,45 +111,29 @@
                     <label for="exerciceDescription">Ex. Description</label>  
                 </div>
                 <div class=" col-md-6 col-sm-6 col-xs-12 ">
-                    <!--<input type="email" class="form-control" id="exerciceDescription" placeholder="Enter your exercice title">-->
-                    <textarea id="exerciceDescription" class="form-control" rows="4"></textarea>
+                    <textarea id="exerciceDescription" class="form-control" rows="4" placeholder="Enter your exercice description" ng-model="ex.description"></textarea>
                 </div>
                   <div class=" col-md-2 col-sm-4 hidden-xs">
                        <h1 style="text-align: center;"> <span class="glyphicon glyphicon-time"></span> </h1>
-                    </div>
-                </div>
+                  </div>
+               </div>
         </div>
         </div>
         </div>
           
          <div class=" col-md-1 col-sm-0 col-xs-0 " ></div>
         <div class=" col-md-9 col-sm-12 col-xs-12 " >
-                <table class="table table-striped table-condensed">
-                    <tr>
-                        <td>1</td>
-                        <td>Warm Up</td>
-                        <td class="hidden-xs"><p>gentium vicinarum excursus sollicitudo pervigil veterum per oportunos saltus erexit et cautos. haec quoque civitates habet inter oppida quaedam ingentes Bostram et Gerasam atque Philadelphiam murorum firmitate cautissimas.</p></td>
-                        <td> 10 min</td>
-                        <td> <button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </button></td>
+                <table class="table table-striped table-condensed" id="table_add">
+                 <tr ng-repeat="exercice in trainingPlan.ex">
+                        <td>{{ exercice.num }}</td>
+                        <td>{{exercice.title}}</td>
+                        <td class = "hidden-xs"><p>{{exercice.description}}</p></td>
+                        <td> {{exercice.heure}}:{{exercice.minute}}</td>
+                        <td> <button type="submit" class="btn btn-danger btn-sm" ng-click="remove(exercice)"> <span class="glyphicon glyphicon-remove"></span> </button></td>
                     </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Warm Up</td>
-                        <td class="hidden-xs"><p>gentium vicinarum excursus sollicitudo pervigil veterum per oportunos saltus erexit et cautos. haec quoque civitates habet inter oppida quaedam ingentes Bostram et Gerasam atque Philadelphiam murorum firmitate cautissimas.</p></td>
-                        <td> 10 min</td>
-                        <td> <button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </button></td>
-                    </tr>
-                      <tr>
-                        <td>1</td>
-                        <td>Warm Up</td>
-                        <td class="hidden-xs"><p>gentium vicinarum excursus sollicitudo pervigil veterum per oportunos saltus erexit et cautos. haec quoque civitates habet inter oppida quaedam ingentes Bostram et Gerasam atque Philadelphiam murorum firmitate cautissimas.</p></td>
-                        <td> 10 min</td>
-                        <td> <button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </button></td>
-                    </tr>
-                    
                 </table>
-             </div>
-            
+        </div>
+            {{sommeTot()}}
     <div class=" col-md-2 ol-sm-0 col-xs-0 " ></div>
     <div class=" col-md-10 ol-sm-5 col-xs-0 " ></div>
     <div class=" col-md-2 ol-sm-5 col-xs-12 text-center" >
@@ -175,12 +159,18 @@
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/angular.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-    <script src="lib/select2-3.5.1/select2.min.js"></script>
-    <script>
-        $(document).ready(function() { $("#e1").select2(); });
-    </script>
+<!--     <script src="lib/select2-3.5.1/select2.min.js"></script> -->
+        <script src="js/service/addTrainingService.js"></script>
+    <script src="js/application/addTrainingApp.js"></script>
+    <script src="js/controller/addTrainingController.js"></script>
+
+    
+<!--     <script> -->
+<!--          $(document).ready(function() { $("#e1").select2(); }); -->
+<!--     </script> -->
              
   </body>
 </html>
