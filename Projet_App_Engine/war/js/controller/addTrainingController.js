@@ -33,68 +33,22 @@ function addTrainingFnt($scope, $log, $window, add){
 	};
 	
 	$scope.trainingPlan.ex.push(exToAdd);
-	console.log("trying to add to task queue");
-	var add_response = add.localAdd(exToAdd.title, exToAdd.description, exToAdd.heure, exToAdd.minute, exToAdd.num);
-    add_response.then(
-        function(payload){
-        	if(add_response){
-        		   $log.info("add success: " + JSON.stringify(payload));
-
-        	}
-
-        },
-        function(err_payload){
-//            $scope.errMsg = "Wrong login";
-            $log.warn("wrong login: " + err_payload.msg);
-        }
-    );
+	
 	}
 	
 	$scope.remove=function(exo_remove){
-//		   var res =document.getElementsByClassName('btn btn-danger btn-sm');
-//		   var td = angular.element(res).parent();
-//		   var tr = angular.element(td[0]).parent();
-//		   tr[0].remove();
-//		   alert(tr);
 		
 		var i =$scope.trainingPlan.ex.indexOf(exo_remove);
 		$scope.trainingPlan.ex.splice(i,1);
+		$scope.nbex = $scope.nbex - 1;
 		
 	}
 	
 	$scope.sommeTot=function(){
 		
-//		var table = angular.element(document.getElementById('table_add')).children();
-//		var max_it = table[0].childElementCount
-//		
-//		for(var i=0;i<max_it;i++){
-//			var tr =table[0].children[i].children;
-//			var time =tr[3].innerText;
-//			var heure_str = time.split("h et");
-//			var lenh = heure_str.length;
-//			if(lenh == 1){
-//				var min = parseInt(heure_str[0].split(" min")[0]);
-//				var heure = 0;
-//			}
-//			else{
-//				var min = parseInt(heure_str[1].split(" min")[0]);
-//				var heure=parseInt(heure_str[0]);
-//			}
-//			$scope.ex.somme.h = $scope.ex.somme.h + heure;
-//			$scope.ex.somme.m = $scope.ex.somme.m + min;
-//			
-//			alert("heure:" + $scope.ex.somme.h);
-//			alert("minutes:"+ $scope.ex.somme.m);
-//			
-//		}
-//		
-//		if(min>60){
-//			var nb_h = min%60;
-//			$scope.ex.somme.h = $scope.ex.somme.h +nb_h;
-//			$scope.ex.somme.m = min - nb_h*60;
-//		}
 		var somme_h=0;
 		var somme_m=0;
+		
 		angular.forEach($scope.trainingPlan.ex, function(ex, key) {
 		somme_m = somme_m + parseInt(ex.minute);
 		somme_h = somme_h + parseInt(ex.heure);
@@ -112,7 +66,26 @@ function addTrainingFnt($scope, $log, $window, add){
 		}
 		
 	}
-	
+	$scope.savePlanToDb=function(trainingPlan){
+		
+		console.log("trying to add to task queue");
+		
+		var add_response = add.localAdd(trainingPlan.title, trainingPlan.description, trainingPlan.domain, trainingPlan.ex, trainingPlan.h_dure, trainingPlan.m_dure);
+	    add_response.then(
+	        function(payload){
+	        	if(add_response){
+	        		   $log.info("add success: " + JSON.stringify(payload));
+
+	        	}
+
+	        },
+	        function(err_payload){
+//	            $scope.errMsg = "Wrong login";
+	            $log.warn("Error add training plan: " + err_payload.msg);
+	        }
+	    );
+		
+	}
 	
 	
 
