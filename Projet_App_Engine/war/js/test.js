@@ -1,9 +1,11 @@
+/*
 var CLIENT_ID;
 var ID;
 var NAME;
 var IMAGE_URL;
 var EMAIL;
 var CONNECTED = false;
+*/
 
 $( document ).ready(function() {
 	$.get("/addWelcome?msg=Bonjour et bienvenue sur notre site d'eCoaching!",function(data){
@@ -76,102 +78,102 @@ gapi.load('auth2', function() {
 	  });
 });
 
-*/
-function onSignIn(googleUser) {
-	/*
-	gapi.load('auth2', function() {
-		  var client_ident = CLIENT_ID + '.apps.googleusercontent.com';
-		  var auth2 = gapi.auth2.init({
-		    client_id: client_ident,
-		    fetch_basic_profile: true, // To use the getBasicProfile() method
-		    scope: 'profile'
-		  });
-
-		  // Sign the user in, and then retrieve their ID.
-		  auth2.signIn().then(function() {
-		    console.log(auth2.currentUser.get().getId());
-		  });
-	});
-	*/
-	console.log("OnSignIn called");
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    ID = profile.getId();
-    $scope.updateId(ID);
-    console.log("Name: " + profile.getName());
-    NAME =  profile.getName();
-    $scope.updateName(NAME);
-    console.log("Image URL: " + profile.getImageUrl());
-    IMAGE_URL = profile.getImageUrl();
-    $scope.updateImUrl(IMAGE_URL);
-    console.log("Email: " + profile.getEmail());
-    EMAIL = profile.getEmail();
-    $scope.updateEmail(EMAIL);
-
-    // The ID token you need to pass to your backend:
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + id_token);
-    CLIENT_ID = id_token;
-    $scope.updateConnected(CONNECTED);
-    
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/validateToken');  // On invoque la méthode post de la servlet
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onload = function() {
-      console.log('Signed in as: ' + xhr.responseText);
-    };
-    xhr.send('idtoken=' + id_token);
-    console.log("*********************************");
-    CONNECTED = true;
-    $scope.updateConnected(CONNECTED);
-    console.log("Connected set to true");
-    /*
-	$.post("/validateToken",function(data){
-		console.log( "ready!" + data);
-		$('#googleConnexion').text(data);
-	});
-	*/
-  };
-  
-  /**
-   * Handler for the signin callback triggered after the user selects an account.
-   */
-  function onSignInCallback(resp) {
-    gapi.client.load('plus', 'v1', apiClientLoaded);
-  }
-
-  /**
-   * Sets up an API call after the Google API client loads.
-   */
-  function apiClientLoaded() {
-    gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);
-  }
-
-  /**
-   * Response callback for when the API client receives a response.
-   *
-   * @param resp The API response object with the user email and profile information.
-   */
-  function handleEmailResponse(resp) {
-    var primaryEmail;
-    for (var i=0; i < resp.emails.length; i++) {
-      if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
-    }
-    document.getElementById('responseContainer').value = 'Primary email: ' +
-        primaryEmail + '\n\nFull Response:\n' + JSON.stringify(resp);
-  }
-  
-
-  function signOut() {
-	    var auth2 = gapi.auth2.getAuthInstance();
-	    auth2.signOut().then(function () {
-	      console.log('User signed out.');
-	    });
-	    console.log("*********************************");
-	    CONNECTED = false;
-	    $scope.updateConnected(CONNECTED);
-	    console.log("Connected set to false");
-	  }
-  
- 
+//*/
+//function onSignIn(googleUser) {
+//	/*
+//	gapi.load('auth2', function() {
+//		  var client_ident = CLIENT_ID + '.apps.googleusercontent.com';
+//		  var auth2 = gapi.auth2.init({
+//		    client_id: client_ident,
+//		    fetch_basic_profile: true, // To use the getBasicProfile() method
+//		    scope: 'profile'
+//		  });
+//
+//		  // Sign the user in, and then retrieve their ID.
+//		  auth2.signIn().then(function() {
+//		    console.log(auth2.currentUser.get().getId());
+//		  });
+//	});
+//	*/
+//	console.log("OnSignIn called");
+//    // Useful data for your client-side scripts:
+//    var profile = googleUser.getBasicProfile();
+//    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+//    ID = profile.getId();
+//    $scope.updateId(ID);
+//    console.log("Name: " + profile.getName());
+//    NAME =  profile.getName();
+//    $scope.updateName(NAME);
+//    console.log("Image URL: " + profile.getImageUrl());
+//    IMAGE_URL = profile.getImageUrl();
+//    $scope.updateImUrl(IMAGE_URL);
+//    console.log("Email: " + profile.getEmail());
+//    EMAIL = profile.getEmail();
+//    $scope.updateEmail(EMAIL);
+//
+//    // The ID token you need to pass to your backend:
+//    var id_token = googleUser.getAuthResponse().id_token;
+//    console.log("ID Token: " + id_token);
+//    CLIENT_ID = id_token;
+//    $scope.updateConnected(CONNECTED);
+//    
+//    var xhr = new XMLHttpRequest();
+//    xhr.open('POST', '/validateToken');  // On invoque la méthode post de la servlet
+//    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//    xhr.onload = function() {
+//      console.log('Signed in as: ' + xhr.responseText);
+//    };
+//    xhr.send('idtoken=' + id_token);
+//    console.log("*********************************");
+//    CONNECTED = true;
+//    $scope.updateConnected(CONNECTED);
+//    console.log("Connected set to true");
+//    /*
+//	$.post("/validateToken",function(data){
+//		console.log( "ready!" + data);
+//		$('#googleConnexion').text(data);
+//	});
+//	*/
+//  };
+//  
+//  /**
+//   * Handler for the signin callback triggered after the user selects an account.
+//   */
+//  function onSignInCallback(resp) {
+//    gapi.client.load('plus', 'v1', apiClientLoaded);
+//  }
+//
+//  /**
+//   * Sets up an API call after the Google API client loads.
+//   */
+//  function apiClientLoaded() {
+//    gapi.client.plus.people.get({userId: 'me'}).execute(handleEmailResponse);
+//  }
+//
+//  /**
+//   * Response callback for when the API client receives a response.
+//   *
+//   * @param resp The API response object with the user email and profile information.
+//   */
+//  function handleEmailResponse(resp) {
+//    var primaryEmail;
+//    for (var i=0; i < resp.emails.length; i++) {
+//      if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
+//    }
+//    document.getElementById('responseContainer').value = 'Primary email: ' +
+//        primaryEmail + '\n\nFull Response:\n' + JSON.stringify(resp);
+//  }
+//  
+//
+//  function signOut() {
+//	    var auth2 = gapi.auth2.getAuthInstance();
+//	    auth2.signOut().then(function () {
+//	      console.log('User signed out.');
+//	    });
+//	    console.log("*********************************");
+//	    CONNECTED = false;
+//	    $scope.updateConnected(CONNECTED);
+//	    console.log("Connected set to false");
+//	  }
+//  
+// 

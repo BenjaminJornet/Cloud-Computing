@@ -1,7 +1,0 @@
-package root;
-
-import javax.servlet.http.HttpServlet;
-
-public class ServletValidateToken extends HttpServlet{
-
-}

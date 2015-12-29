@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html ng-app="addTrainingApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="987019917445-0hlballc5on35tepektol2s44k7m4id7.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>    
+
+    <title>Form Sample</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+<!--     <link href="navbar-fixed-top.css" rel="stylesheet"> -->
+   
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class=" col-md-10 ">
+          	<a class="navbar-brand" href="#">Form Sample</a>
+          </div>
+       <div class=" col-md-2 " ng-controller="loginCtrl" style="width: 330px;">
+       <div ng-hide="ctr.userCarac.connected = false">
+         <form class="navbar-form navbar-left"  style="width:100%" role="search">
+              <button id="googleConnexion" type="submit" class="btn btn-primary g-signin2" ng-click="onSignIn()" data-onsuccess="signinCallback()" data-callback="signinCallback()" data-theme="dark">G</button> 
+<!--         data-clientid="YOUR CLIENT ID.apps.googleusercontent.com" -->
+<!--         data-cookiepolicy="single_host_origin" -->
+<!--         data-scope="https://www.googleapis.com/auth/plus.login" -->
+              <button type="submit" class="btn btn-success">Y</button>
+              <button type="submit" class="btn btn-warning">O</button>
+        </form>
+        </div>
+        <div ng-model="userCarac" ng-hide="userCarac.connected = true">
+        <h2> Bonjour {{ userCarac.name }} </h2>
+        <a href="#" onclick="signOut()">Sign out</a>
+        </div>
+      </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Personnal trainer</h1>
+      </div>            
+    </div> 
+
+<div class="container">
+
+  <div class="row">
+      <div class=" col-md-1 col-sm-0 col-xs-0 " ></div>
+      <div class=" col-md-6 col-sm-12 col-xs-12 ">
+          <p id=mess>Ideoque fertur neminem aliquando ob haec vel similia poenae addictum oblato de more elogio revocari iussisse, quod inexorabiles quoque principes factitarunt. et exitiale hoc vitium, quod in aliis non numquam intepescit, in illo aetatis progressu effervescebat, obstinatum eius propositum accendente adulatorum cohorte.</p>
+
+      </div>
+      <div class=" col-md-3 col-sm-12 col-xs-12 ">
+          <div class=" col-md-12 col-sm-12 col-xs-12 ">
+              <div id="flipcountdownbox1">                            
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div> 
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script src="js/jquery-1.11.1.min.js"></script>
+     <script src="js/angular.min.js"></script>
+     <script src="js/angular-cookies.min.js"></script>
+     <script src="js/angular-functions.js"></script>     
+     <script src="js/test.js"></script>
+     <script src="js/application/addTrainingApp.js"></script>
+     <script src="js/application/searchApp.js"></script>
+     <script src="js/application/loginApp.js"></script>
+     <script src="js/controller/addTrainingController.js"></script>
+     <script src="js/controller/searchController.js"></script>
+     <script src="js/controller/loginController.js"></script>
+     <script src="js/service/addTrainingService.js"></script>
+     <script src="js/service/searchService.js"></script>
+     <script src="js/service/loginService.js"></script>
+<!--      <script src="js/loginOpenId.js"></script> -->
+     <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

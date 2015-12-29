@@ -47,6 +47,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>ServletValidateToken</servlet-name>
+		<servlet-class>root.ServletValidateToken</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletValidateToken</servlet-name>
+		<url-pattern>/validateToken</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>TaskQueueServlet</servlet-name>
 		<servlet-class>root.TaskQueueServlet</servlet-class>
 	</servlet>
