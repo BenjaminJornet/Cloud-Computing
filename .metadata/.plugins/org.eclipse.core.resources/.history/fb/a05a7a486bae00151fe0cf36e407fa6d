@@ -43,8 +43,7 @@
         </div>
         <div ng-model="userCarac" ng-hide="userCarac.connected == false">
         <h2 style="color: blue!important;"> Bonjour {{ userCarac.name }} </h2>
-        <button type="submit" class="btn btn-warning"  ng-click="signOut()">Sign out</button>
-<!--         <a href="#" ng-click="signOut()">Sign out</a> -->
+        <a href="#" ng-click="signOut()">Sign out</a>
         </div>
       </div>
           
