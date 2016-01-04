@@ -29,7 +29,7 @@ function addFnc($http,$q) {
 			  }, function errorCallback(data) {
 			    // called asynchronously if an error occurs
 			    // or server returns response with an error status.
-				  console.log("Erreur requête get ! ");
+				  console.log("Erreur requête post ! ");
 				  
 			  });
 	return deferred.promise;

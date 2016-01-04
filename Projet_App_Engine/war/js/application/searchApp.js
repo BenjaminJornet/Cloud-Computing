@@ -1,1 +1,2 @@
-angular.module('searchApp', ['searchApp']);
+angular.module('searchApp', ['searchService']);
+

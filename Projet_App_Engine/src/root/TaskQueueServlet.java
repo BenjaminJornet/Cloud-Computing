@@ -32,30 +32,6 @@ public class TaskQueueServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-//		String jsonString = IOUtils.toString(req.getInputStream());
-//		System.out.println("(Servlet) Request string " + jsonString);
-		
-//		JSONObject jsonReceive = (JSONObject) JSONValue.parse(jsonString);
-//		System.out.println(jsonString);
-////		
-//		Queue queue = QueueFactory.getDefaultQueue();
-//		// Ajout d’une tache simple
-//		TaskOptions task=TaskOptions.Builder.withUrl("/AddTrainingServlet").param(key, value);
-//		queue.add(task);
-//		// Ajout d’une tache simple avec des paramètres de configuration
-//		Map<String, String> headers=new HashMap<String, String>();
-//		headers.put("X-AppEngine-TaskName","task2");
-//		headers.put("X-AppEngine-TaskRetryCount","4");
-//		TaskOptions task2=TaskOptions.Builder.withUrl("/worker2").headers(headers);
-//		queue.add(task2);
-//		// Ajout d’une tache en spécifiant la méthode utilisée
-//		TaskOptions
-//		task3=TaskOptions.Builder.withUrl("/worker?a=b&c=d").method(Method.GET);
-//		queue.add(task3);
-//		//...
-//		queue.deleteTask("task");
-//		//...
-//		queue.purge();
 	}
 
 	@Override
@@ -75,34 +51,45 @@ public class TaskQueueServlet extends HttpServlet{
 		JSONArray ex = null ;
 		Long h_dure =null;
 		Long m_dure = null;
+		String q="";
 		
 		if(jsonReceive != null){
-			titre = (String) jsonReceive.get("title");
-			desc = (String) jsonReceive.get("description");
-			domain = (String) jsonReceive.get("domain");
-			ex = (JSONArray) jsonReceive.get("ex");
-			h_dure =(Long) jsonReceive.get("heure");
-			m_dure = (Long) jsonReceive.get("minute");
+			if(jsonReceive.containsKey("q")){
+				q = (String) jsonReceive.get("q");
+				
+				Queue queue = QueueFactory.getDefaultQueue();
+//				// Ajout d’une tache simple
+				TaskOptions task=TaskOptions.Builder.withUrl("/searchDataStore")
+						.param("q", q);
+				
+				queue.add(task);
+			}else{
+				titre = (String) jsonReceive.get("title");
+				desc = (String) jsonReceive.get("description");
+				domain = (String) jsonReceive.get("domain");
+				ex = (JSONArray) jsonReceive.get("ex");
+				h_dure =(Long) jsonReceive.get("heure");
+				m_dure = (Long) jsonReceive.get("minute");
+				
+				Queue queue = QueueFactory.getDefaultQueue();
+				TaskOptions task=TaskOptions.Builder.withUrl("/addtraining")
+						.param("title", titre)
+						.param("description", desc)
+						.param("domain", domain)
+						.param("ex",ex.toString())
+						.param("heure", h_dure.toString())
+						.param("minute", m_dure.toString());
+						
+				
+				queue.add(task);
+			}
 		}
-		
-		System.out.println(ex.toString());
-		
-		Queue queue = QueueFactory.getDefaultQueue();
-//		// Ajout d’une tache simple
-		TaskOptions task=TaskOptions.Builder.withUrl("/addtraining")
-				.param("title", titre)
-				.param("description", desc)
-				.param("domain", domain)
-				.param("ex",ex.toString())
-				.param("heure", h_dure.toString())
-				.param("minute", m_dure.toString());
 				
 		
-		queue.add(task);
 		
 		resp.setContentType("application/json");
         PrintWriter out= resp.getWriter();
-        out.println(jsonReceive);
+        out.print(jsonReceive);
         out.flush();
         out.close();
 		

@@ -80,7 +80,6 @@ function addTrainingFnt($scope, $log, $window, add){
 
 	        },
 	        function(err_payload){
-//	            $scope.errMsg = "Wrong login";
 	            $log.warn("Error add training plan: " + err_payload.msg);
 	        }
 	    );
