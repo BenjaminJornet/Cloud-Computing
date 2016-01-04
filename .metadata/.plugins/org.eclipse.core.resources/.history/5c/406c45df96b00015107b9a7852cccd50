@@ -1,0 +1,72 @@
+package model;
+
+public class Exercice {
+	private String titre;
+	private String timer;
+	private String desc;
+	private String domain;
+	private String ex;
+	private String h_dure;
+	private String m_dure;
+	private boolean validationBoutonState;
+	
+	public Exercice(JSONObject json){
+		try {
+			this.titre=json.getString("titre");
+			this.timer = json.getString("timer");
+			this.desc = json.getString("desc");
+			this.domain = json.getString("domain");
+			this.ex = json.getString("ex");
+			this.h_dure = json.getString("h_dure");
+			this.m_dure = json.getString("m_dure");
+			this.validationBoutonState = json.getString("validationBoutonState");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Exercice(String titre, String timer, String desc, 
+					String domain, String ex, String h_dure,
+					String m_dure, boolean validationBoutonState) {
+		this.titre = titre;
+		this.timer = timer;
+		this.desc = desc;
+		this.domain = domain;
+		this.ex = ex;
+		this.h_dure = h_dure;
+		this.m_dure = m_dure;
+		this.validationBoutonState = validationBoutonState;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getTimer() {
+		return timer;
+	}
+
+	public JSONObject toJSON() {
+		JSONObject o = new JSONObject();
+		try {
+			o.put("Title", title);
+			o.put("Description", description);
+			o.put("Date", timer);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return o;
+	}
+}
