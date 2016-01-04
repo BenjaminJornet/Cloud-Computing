@@ -1,0 +1,125 @@
+package model;
+
+import com.google.appengine.labs.repackaged.org.json.JSONException;
+import com.google.appengine.labs.repackaged.org.json.JSONObject;
+
+public class Exercice {
+
+	private String titre;
+	private String timer;
+	private String desc;
+	private String domain;
+	private String ex;
+	private String h_dure;
+	private String m_dure;
+	private boolean validationBoutonState;
+	
+	public Exercice(JSONObject json){
+		try {
+			this.titre=json.getString("titre");
+			this.timer = json.getString("timer");
+			this.desc = json.getString("desc");
+			this.domain = json.getString("domain");
+			this.ex = json.getString("ex");
+			this.h_dure = json.getString("h_dure");
+			this.m_dure = json.getString("m_dure");
+			this.validationBoutonState = json.getBoolean("validationBoutonState");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Exercice(String titre, String timer, String desc, 
+					String domain, String ex, String h_dure,
+					String m_dure, boolean validationBoutonState) {
+		this.titre = titre;
+		this.timer = timer;
+		this.desc = desc;
+		this.domain = domain;
+		this.ex = ex;
+		this.h_dure = h_dure;
+		this.m_dure = m_dure;
+		this.validationBoutonState = validationBoutonState;
+	}
+
+	public JSONObject toJSON() {
+		JSONObject o = new JSONObject();
+		try {
+			o.put("Title", titre);
+			o.put("Date", timer);
+			o.put("Description", desc);
+			o.put("Domain", domain);
+			o.put("Ex", ex);
+			o.put("H_dure", h_dure);
+			o.put("M_dure", m_dure);
+			o.put("ValidationBoutonState", validationBoutonState);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return o;
+	}
+	
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+	
+	public String getTimer() {
+		return timer;
+	}
+	
+	public void setTimer(String timer) {
+		this.timer = timer;
+	}
+
+	public String getDescription() {
+		return desc;
+	}
+
+	public void setDescription(String description) {
+		this.desc = description;
+	}
+
+	public String getDomain() {
+		return domain;
+	}
+
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+
+	public String getEx() {
+		return ex;
+	}
+
+	public void setEx(String ex) {
+		this.ex = ex;
+	}
+
+	public String getH_dure() {
+		return h_dure;
+	}
+
+	public void setH_dure(String h_dure) {
+		this.h_dure = h_dure;
+	}
+
+	public String getM_dure() {
+		return m_dure;
+	}
+
+	public void setM_dure(String m_dure) {
+		this.m_dure = m_dure;
+	}
+
+	public boolean isValidationBoutonState() {
+		return validationBoutonState;
+	}
+
+	public void setValidationBoutonState(boolean validationBoutonState) {
+		this.validationBoutonState = validationBoutonState;
+	}
+}
