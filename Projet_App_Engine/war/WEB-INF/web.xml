@@ -73,6 +73,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/searchDataStore</url-pattern>
 	</servlet-mapping>
 	
+		<servlet>
+		<servlet-name>SearchDataStoreServlet2</servlet-name>
+		<servlet-class>root.SearchDataStoreServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchDataStoreServlet2</servlet-name>
+		<url-pattern>/searchDataStore2</url-pattern>
+	</servlet-mapping>
+	
 	
 	<welcome-file-list>
 		<welcome-file>page_accueil.html</welcome-file>
