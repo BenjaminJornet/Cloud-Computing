@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="retrieveApp" ng-controller="retrieveCtrl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,13 +34,13 @@
       </nav>
       <!-- ------------------------------------------- HEADER ZONE END ------------------------------------------- -->
       
-      <div class=" col-md-12 col-sm-12 col-xs-12 " style="margin-bottom:40px">
+      <div class=" col-md-12 col-sm-12 col-xs-12 " style="margin-bottom:40px" ng-repeat="curplan in result.plan">
           <h3> Training plans</h3>
           <div class=" col-md-6 col-sm-6 col-xs-6">
-             <button type="submit" class="btn btn-link">Intensive Running  </button>
+             <button type="submit" class="btn btn-link">{{curplan.title}}</button>
           </div>
           <div class=" col-md-6 col-sm-6 col-xs-6">
-               <label class="btn"> <span class="glyphicon glyphicon-time"></span> 50 min. </label>
+               <label class="btn"> <span class="glyphicon glyphicon-time"></span> {{curplan.heure}}:{{curplan.minute}} </label>
           </div>
       </div>
       
@@ -79,10 +79,17 @@
         </div>
       </nav>
       <!-- ------------------------------------------- FOOTER ZONE END ------------------------------------------- -->
-    
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/angular.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+<!--     <script src="lib/select2-3.5.1/select2.min.js"></script> -->
+<!--     <script src="js/service/retrieveDataService.js"></script> -->
+    <script src="js/application/retrieveDataApp.js"></script>
+    <script src="js/controller/retrieveDataController.js"></script>
+    <script src="js/service/searchService.js"></script>
+    <script src="js/application/searchApp.js"></script>
+    <script src="js/controller/searchController.js"></script>
   </body>
 </html>

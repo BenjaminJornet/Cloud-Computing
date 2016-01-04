@@ -67,7 +67,7 @@ public class SearchDataStoreServlet extends HttpServlet{
 			//Filter in datastore !
 			// Recupération du service Datastore
 			DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-			FilterOperator[] filter ;  
+
 			// Utilisation Query afin de rassembler les éléments a appeler/filter
 			Query query = new Query("AddTraining");
 			query.addFilter("ex", Query.FilterOperator.GREATER_THAN_OR_EQUAL, req.getParameter("q"));
@@ -88,7 +88,7 @@ public class SearchDataStoreServlet extends HttpServlet{
 			}
 			
 			JSONObject ex = new JSONObject();
-			JSONObject jsonExTitle = new JSONObject();
+			JSONArray jsonExTitle = new JSONArray();
 
 			
 			int k =0;
@@ -108,7 +108,7 @@ public class SearchDataStoreServlet extends HttpServlet{
 					jsonCurrEX.put("title", title_curr_ex);
 					jsonCurrEX.put("heure", heure);
 					jsonCurrEX.put("minute", minute);
-					jsonExTitle.put("ex"+k, jsonCurrEX);
+					jsonExTitle.add( jsonCurrEX);
 
 					k++;
 				}
@@ -126,7 +126,7 @@ public class SearchDataStoreServlet extends HttpServlet{
 
 			// Récupération du résultat de la requète à l’aide de PreparedQuery 
 			pq = datastore.prepare(query);
-			JSONObject jsonPlan = new JSONObject();
+			JSONArray jsonPlan = new JSONArray();
 			JSONObject planTitleTime = new JSONObject();
 			
 			int nbplan=0;
@@ -138,8 +138,7 @@ public class SearchDataStoreServlet extends HttpServlet{
 					planTitleTime.put("title", title_plan);
 					planTitleTime.put("heure",heure);
 					planTitleTime.put("minute",minute);
-
-					jsonPlan.put("plan"+nbplan, planTitleTime);
+					jsonPlan.add(planTitleTime);
 					nbplan++;
 				}
 
