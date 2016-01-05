@@ -10,7 +10,7 @@ function searchFnt($scope, $log, $window, search){
 	}
 	
 	
-	$scope.search=function(){
+	$scope.search=function(content){
 //	alert($scope.content);
 	 console.log("search in progress ...");
 		

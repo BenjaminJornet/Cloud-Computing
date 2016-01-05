@@ -41,8 +41,8 @@
                 <label for="inputTitle">Title</label>  
              </div>
             <div class=" col-md-6 col-sm-6 col-xs-12 ">
-                <input type="email" class="form-control" id="inputTitle" placeholder="Enter your Training plan title">
-             </div>
+                <input type="text" class="form-control" id="inputTitle" placeholder="Enter your Training plan title" ng-model="trainingPlan.title">
+             </div> 
    
               <div class=" col-md-3 col-sm-4 hidden-xs">
                   <div class=" col-md-4 col-sm-4 hidden-xs">
@@ -57,7 +57,7 @@
             </div>
             <div class=" col-md-6 col-sm-6 col-xs-12 ">
                 <!--<input type="email" class="form-control" id="inputDescription" placeholder="Enter your Training plan Description">-->
-                <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                <textarea id="inputDescription" class="form-control" rows="4"  placeholder="Enter your Training plan Description" ng-model="trainingPlan.description"></textarea>
             </div>
         </div>
         <div class="row" style="margin-top:10px">
@@ -67,7 +67,7 @@
             </div>
             <div class=" col-md-6 col-sm-6 col-xs-12 " >
                 <p>
-                    <select id="e1" class="select2-container populate" style="width:100%">
+                    <select id="e1" class="select2-container populate" style="width:100%" ng-model="trainingPlan.domain">
                         <option value="Running">Running</option>
                         <option value="Volleyball">Volleyball</option>
                         <option value="Boxe">Boxe</option>
@@ -138,7 +138,7 @@
     <div class=" col-md-10 ol-sm-5 col-xs-0 " ></div>
     <div class=" col-md-2 ol-sm-5 col-xs-12 text-center" >
         <button type="submit" class="btn btn-danger btn-sm"> <span class="glyphicon glyphicon-remove"></span> </button>
-        <button type="submit" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-ok"></span> </button>
+        <button type="submit" class="btn btn-success btn-lg"> <span class="glyphicon glyphicon-ok" ng-click="savePlanToDb(trainingPlan)"></span> </button>
     </div>
 
  
