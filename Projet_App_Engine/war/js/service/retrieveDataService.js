@@ -1,13 +1,12 @@
-angular. module('retrieveDataService', []).service('retrieve',retrieveFnc);
+angular. module('retrieveService', []).service('retrieve',retrieveFnc);
 retrieveFnc.$inject=['$http','$q'];
 
 function retrieveFnc($http, $q){
 	    var fncContainer={
-			localSearch:localSearch
+	    	localRetrieve:localRetrieve
 		};
 		function localRetrieve(){
 			
-
 		    var deferred = $q.defer();
 			$http({
 				method: 'GET',
@@ -19,7 +18,7 @@ function retrieveFnc($http, $q){
 					
 					if(data1){
 						var msg = "Search request success !";
-						deferred.resolve({"result":{"plans": data1.data.title_plan_found, "exs": data1.data.title_exo_found}, msg: msg});
+						deferred.resolve({"plans": data1.data.plan, "exs": data1.data.ex, "msg": msg});
 					}
 					else{
 						 var msg = "METHOD GET FAILED FOR SEARCHING!";

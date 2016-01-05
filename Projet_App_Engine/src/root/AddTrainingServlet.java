@@ -133,6 +133,7 @@ public class AddTrainingServlet extends HttpServlet{
          out.close();
 	}
 	public JSONObject getJSONFromTaskQueueRequest(String req){
+		//Utiliser URLDecoder
 		jsonReceive = new JSONObject();
 		if(req.contains("&")){
 			String[] paramsplit = req.split("&");
@@ -159,20 +160,9 @@ public class AddTrainingServlet extends HttpServlet{
 				
 					}
 					else if("ex".equals(param[i])){
-//						String ex = param[i+1].replace("+", " ");
-//						ex = ex.replace("%2C", ",");
-//						ex = ex.replace("%5B", "[");
-//						ex = ex.replace("%7B", "{");
-//						ex = ex.replace("%3A", "{");
-//						String str = "";
-//						str = str+'"';
-//						ex = ex.replace("%22", str);
-
-						String str = "";
-//						param[i+1] = param[i+1].replace("%","0x");
-
-//						char[] tab = param[i+1].toCharArray();
 						
+						String str = "";
+
 						for(int j = 0; j < param[i+1].length();j++){
 							if("%".equals(param[i+1].substring(j, j+1))){
 

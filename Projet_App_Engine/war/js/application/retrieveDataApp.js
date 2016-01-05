@@ -1,1 +1,1 @@
-angular.module('retrieveApp', ['retrieveDataService']);
+angular.module('retrieveApp', ['retrieveService']);

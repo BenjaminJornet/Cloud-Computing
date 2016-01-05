@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="retrieveApp" ng-controller="retrieveCtrl">
+<html lang="en" ng-app="retrieveApp" ng-controller="retrieveCtrl" data-ng-init="retrieve()">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,19 +44,13 @@
           </div>
       </div>
       
-      <div class=" col-md-12 col-sm-12 col-xs-12 " style="margin-bottom:40px">
+      <div class=" col-md-12 col-sm-12 col-xs-12 " style="margin-bottom:40px" ng-repeat="curex in result.ex">
           <h3>Exercices</h3>
            <div class=" col-md-6 col-sm-6 col-xs-6">
-             <button type="submit" class="btn btn-link">Running Warm up  </button>
+             <button type="submit" class="btn btn-link">{{curex.title}} </button>
           </div>
           <div class=" col-md-6 col-sm-6 col-xs-6">
-               <label class="btn"> <span class="glyphicon glyphicon-time"></span> 10 min. </label>
-          </div>
-           <div class=" col-md-6 col-sm-6 col-xs-6">
-             <button type="submit" class="btn btn-link">Running 30/30 </button>
-          </div>
-          <div class=" col-md-6 col-sm-6 col-xs-6">
-               <label class="btn"> <span class="glyphicon glyphicon-time"></span> 15 min. </label>
+               <label class="btn"> <span class="glyphicon glyphicon-time"></span> {{curex.heure}}:{{curex.minute}} </label>
           </div>
       </div>
       
@@ -67,7 +61,6 @@
           
           <p>From the Kastor Kitchen: Farm Fresh Facial [http://www.runnersworld.com/recipes/from-the-kastor-kitchen-farm-fresh-facial] Use leftover egg yolk to clear up</p>
       </div>
-      
       
       <!-- ------------------------------------------- FOOTER ZONE ------------------------------------------- -->
       <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
@@ -85,11 +78,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
 <!--     <script src="lib/select2-3.5.1/select2.min.js"></script> -->
-<!--     <script src="js/service/retrieveDataService.js"></script> -->
+    <script src="js/service/retrieveDataService.js"></script>
     <script src="js/application/retrieveDataApp.js"></script>
     <script src="js/controller/retrieveDataController.js"></script>
-    <script src="js/service/searchService.js"></script>
-    <script src="js/application/searchApp.js"></script>
-    <script src="js/controller/searchController.js"></script>
+<!--     <script src="js/service/searchService.js"></script> -->
+<!--     <script src="js/application/searchApp.js"></script> -->
+<!--     <script src="js/controller/searchController.js"></script> -->
   </body>
 </html>

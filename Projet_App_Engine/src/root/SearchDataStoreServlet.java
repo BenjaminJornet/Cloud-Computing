@@ -2,6 +2,8 @@ package root;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 import javax.servlet.ServletException;
@@ -182,7 +184,16 @@ public class SearchDataStoreServlet extends HttpServlet{
 			//Affectation au jsonReceive
 				if("q".equals(para)){
 					if(!("".equals(param[i+1]))){
-						jsonReceive.put("q",param[i+1].replace("+", " "));
+						URLDecoder u = new URLDecoder();
+						
+						String s="";
+						try {
+							s = u.decode(param[i+1], "UTF-8");
+						} catch (UnsupportedEncodingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						jsonReceive.put("q",s);
 					}
 					else{
 						jsonReceive.put("q","");

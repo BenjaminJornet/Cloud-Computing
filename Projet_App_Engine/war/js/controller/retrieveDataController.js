@@ -2,21 +2,35 @@ angular.module('retrieveApp').controller('retrieveCtrl',retrieveFnt);
 
 retrieveFnt.$inject=['$scope','$log', '$window', 'retrieve' ];
 
-function retrieveFnt($scope,retrieve,$log,$window){
+function retrieveFnt($scope,$log,$window,retrieve){
 $scope.result={
 		ex:[],
 		plan:[]
 };
 $scope.retrieve = function(){
+	var resp_search =  retrieve.localRetrieve();
 	resp_search.then(function(payload){
     	if(resp_search){
-    		
-    	   $scope.result.ex.push.apply($scope.result.ex, payload.result.exs);
-    	   $scope.result.plan.push.apply($scope.result.plan, payload.result.plans);
-    	   
+    		if(angular.isArray(payload.exs)){
+    			angular.forEach(payload.exs, function(value,key){
+    				$scope.result.ex.push(value);
+    			});
+    		}	
+			else{
+				$scope.result.ex.push(payload.exs);
+			}
+    			if(angular.isArray(payload.plans)){
+       				angular.forEach(payload.plans, function(value,key){
+        				$scope.result.plan.push(value);
+        			});
+    			}
+    			else{
+    				$scope.result.plan.push(payload.plans);
+    			}
+    			
+
  		   $log.info("research result: " + JSON.stringify(payload));
  		   
- 		   $window.location.href="/ha-result-screen.html";
     	}
 	},
 	function(err_payload){

@@ -1,6 +1,6 @@
 angular.module('searchApp').controller('searchCtrl',searchFnt);
 
-searchFnt.$inject=['$scope','$log', '$window', 'search' ];
+searchFnt.$inject=['$scope','$log', '$window', 'search'];
 
 function searchFnt($scope, $log, $window, search){
 	$scope.content = "";
@@ -25,9 +25,11 @@ function searchFnt($scope, $log, $window, search){
      		   
      		   $.post("/retrieveData",$scope.result, function(data, err){
      			   alert(data);
+     			   $window.location.href="/ha-result-screen.html";
+     			   
      		   })
      		   
-     		   $window.location.href="/ha-result-screen.html";
+     		   
         	}
      },
      function(err_payload){
