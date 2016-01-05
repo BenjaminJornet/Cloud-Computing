@@ -34,7 +34,7 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		
+		doPost(req,resp);
 	}
 
 	@Override
@@ -69,7 +69,16 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 			FilterOperator[] filter ;  
 			// Utilisation Query afin de rassembler les �l�ments a appeler/filter
 			Query query = new Query("AddTraining");
-			query.addFilter("ex", Query.FilterOperator.GREATER_THAN_OR_EQUAL, req.getParameter("q"));
+			String keyword = req.getParameter("q");
+			query.addFilter("ex", Query.FilterOperator.GREATER_THAN_OR_EQUAL, keyword);
+			
+			if(keyword==null){
+				System.out.println("t'es null y a pas de q");
+			}
+			else{
+				System.out.println("q=" + q);
+
+			}
 
 			// R�cup�ration du r�sultat de la requ�te � l�aide de PreparedQuery 
 			PreparedQuery pq = datastore.prepare(query);
@@ -170,6 +179,7 @@ public class SearchDataStoreServlet2 extends HttpServlet{
         out.print(jsonToSend);
         out.flush();
         out.close();
+        resp.getWriter().println("eh non ");
 		
 	}
 	public JSONObject getJSONFromTaskQueueRequest(String req){
@@ -194,7 +204,7 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 		}
 		if(jsonReceive != null){
 			if("".equals(jsonReceive.get("q"))){
-				return null;
+				return new JSONObject();
 			}
 		}
 		

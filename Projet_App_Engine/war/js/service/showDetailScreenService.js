@@ -6,21 +6,21 @@ function showFnc($http,$q) {
 		localAdd:localAdd
 	};
 	function localAdd(title, description, domain, ex, heure, minute, num){
-		
-
+	
 	    var deferred = $q.defer();
 		$http({
-			method: 'POST',
+			method: 'GET',
 	        url: '/searchDataStore2',
 	        data: {title: title, description: description, domain: domain, ex: ex, heure: heure, minute:minute, num: num}
 			}).then(function successCallback(data) {
 			    // this callback will be called asynchronously
 			    // when the response is available
 				//, "domain": data.data.domain, "ex": data.data.ex, "heure": data.data.heure, "minute":data.data.minute, "num": data.data.num
+				alert(JSON.stringify(data));
 				
 				if(data){
 					var msg = "Training plan added!";
-					deferred.resolve({"show":{"title": data.data.title, "description": data.data.description}, msg: msg});
+					deferred.resolve({"show":{"title": data.title, "description": data.description}, msg: msg});
 				}
 				else{
 					 var msg = "METHOD GET FAILED FOR ADDING Training!";

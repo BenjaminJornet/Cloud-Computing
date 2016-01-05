@@ -2,7 +2,7 @@ angular.module('showDetailScreenApp').controller('showDetailScreenCtrl',showDeta
 
 showDetailScreenFnt.$inject=['$scope','$log', '$window', 'show' ];
 
-function showDetailScreenFnt($scope, $log, $window, add){
+function showDetailScreenFnt($scope, $log, $window, show){
 	$scope.nbex =0;
 	$scope.trainingPlan={
 			title:"",
@@ -20,8 +20,15 @@ function showDetailScreenFnt($scope, $log, $window, add){
 			minute:"",
 			num:""
 		}
-	
-	
+	sendStat=function(){
+		show.localAdd($scope.trainingPlan.title, $scope.trainingPlan.description,
+				$scope.trainingPlan.domain, $scope.trainingPlan.ex, 
+				$scope.trainingPlan.h_dure, $scope.trainingPlan.m_dure, $scope.trainingPlan.nbex);		
+	}
+	sendStat();
+//	var s = sendStat();
+//	alert(s);
+
 	$scope.addTraining=function(){
 		$scope.nbex = $scope.nbex + 1;
 	var exToAdd ={
@@ -70,7 +77,7 @@ function showDetailScreenFnt($scope, $log, $window, add){
 		
 		console.log("trying to add to task queue");
 		
-		var add_response = add.localAdd(trainingPlan.title, trainingPlan.description, trainingPlan.domain, trainingPlan.ex, trainingPlan.h_dure, trainingPlan.m_dure);
+		var add_response = show.localAdd(trainingPlan.title, trainingPlan.description, trainingPlan.domain, trainingPlan.ex, trainingPlan.h_dure, trainingPlan.m_dure);
 	    add_response.then(
 	        function(payload){
 	        	if(add_response){
