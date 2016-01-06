@@ -1,12 +1,18 @@
 angular.module('retrieveApp').controller('retrieveCtrl',retrieveFnt);
 
-retrieveFnt.$inject=['$scope','$log', '$window', 'retrieve' ];
+retrieveFnt.$inject=['$scope','$log', '$window', 'retrieve', 'show' ];
 
-function retrieveFnt($scope,$log,$window,retrieve){
+function retrieveFnt($scope,$log,$window,retrieve,show){
 $scope.result={
 		ex:[],
 		plan:[]
 };
+
+sendStat=function(titre){
+	show.localAdd(titre);		
+}
+sendStat();
+
 $scope.retrieve = function(){
 	var resp_search =  retrieve.localRetrieve();
 	resp_search.then(function(payload){

@@ -1,7 +1,0 @@
-angular.module('addTrainingApp').controller('searchCtrl',searchFnt);
-
-searchFnt.$inject=['$scope','$log', '$window', 'add' ];
-
-function searchFnt($scope, $log, $window){
-	
-}

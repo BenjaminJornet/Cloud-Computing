@@ -1,3 +1,0 @@
-angular.module('loginApp').controller('loginCtrl',loginFnt);
-
-loginFnt.$inject=['$scope','$log', '$window', 'add' ];

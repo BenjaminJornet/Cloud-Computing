@@ -1,7 +1,0 @@
-angular.module('searchApp').controller('searchCtrl',searchFnt);
-
-searchFnt.$inject=['$scope','$log', '$window', 'add' ];
-
-function loginFnt($scope, $log, $window){
-	
-}

@@ -1,1 +1,1 @@
-angular.module('retrieveApp', ['retrieveService']);
+angular.module('retrieveApp', ['retrieveService', 'showDetailScreenService']);
