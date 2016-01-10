@@ -23,7 +23,7 @@ function showDetailScreenFnt($scope, $log, $window, show){
 	sendStat=function(titre){
 		show.localAdd(titre);		
 	}
-	sendStat();
+	//sendStat();
 //	var s = sendStat();
 //	alert(s);
 

@@ -8,10 +8,63 @@ $scope.result={
 		plan:[]
 };
 
-sendStat=function(titre){
-	show.localAdd(titre);		
+$scope.nbex =0;
+
+$scope.trainingPlan={
+		title:"",
+		description:"",
+		domain:"",
+		ex:[],
+		h_dure: "",
+		m_dure:""
+	}
+
+$scope.ex={
+		title:"",
+		description:"",
+		heure:"",
+		minute:"",
+		num:""
+	}
+console.log("$scope.result = ");
+console.log($scope.result);
+
+// HEURE MINUTE TITRE DESCRIPTION
+$scope.sendStat=function(titre){
+	
+	var result = show.local(titre);
+	console.log("Resultat : ");
+	console.log(result);
+};
+
+$scope.detail = function(){
+	var resp_search = retrieve.localData();
+	resp_search.then(function(payload){
+    	if(resp_search){
+    		
+  		   $log.info("research result: " + JSON.stringify(payload));
+ 		   var size = $scope.trainingPlan.ex.length;
+ 		   
+   		   if(angular.isArray(payload.exos)){
+	    	   angular.forEach(payload.exos, function(value,key){
+					//$scope.result.ex.push(value);
+		 		   $scope.trainingPlan.ex[size].title = value.title;
+		 		   $scope.trainingPlan.ex[size].description = value.description;
+		 		   $scope.trainingPlan.ex[size].heure = value.heure;
+		 		   $scope.trainingPlan.ex[size].minute = value.minute;
+		 		   size++;
+	    	   });
+   		   }
+ 		   console.log("$scope.result = ");
+ 		   console.log(JSON.stringify(payload));
+ 		   console.log($scope.trainingPlan);
+    	}
+	},
+	function(err_payload){
+			$log.warn("Error research: " + err_payload.msg);
+ 
+	});
 }
-sendStat();
 
 $scope.retrieve = function(){
 	var resp_search =  retrieve.localRetrieve();
@@ -34,9 +87,11 @@ $scope.retrieve = function(){
     				$scope.result.plan.push(payload.plans);
     			}
     			
-
+    	   console.log("*******************************");
+    	   console.log(JSON.stringify(payload));
  		   $log.info("research result: " + JSON.stringify(payload));
- 		   
+ 		   console.log("$scope.result = ");
+ 		   console.log($scope.result);
     	}
 	},
 	function(err_payload){

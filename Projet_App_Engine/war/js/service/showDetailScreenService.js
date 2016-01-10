@@ -16,11 +16,12 @@ function showFnc($http,$q) {
 			    // this callback will be called asynchronously
 			    // when the response is available
 				//, "domain": data.data.domain, "ex": data.data.ex, "heure": data.data.heure, "minute":data.data.minute, "num": data.data.num
+				alert("showdetailscreenservice");
 				alert(JSON.stringify(data));
 				
 				if(data){
 					var msg = "Training plan added!";
-					deferred.resolve({"show":{"title": data.title, "description": data.description}, msg: msg});
+					deferred.resolve({"show":{"exos": data.ex, "mesg": msg}}); //"title": data.data.title, "description": data.data.description, "heure": data.data.heure, "minute": data.data.minute}, msg: msg});
 				}
 				else{
 					 var msg = "METHOD GET FAILED FOR ADDING Training!";

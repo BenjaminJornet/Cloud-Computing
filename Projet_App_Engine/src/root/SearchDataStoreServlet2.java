@@ -34,7 +34,13 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		//doPost(req,resp);
+		System.out.println(jsonToSend);
+		resp.setContentType("application/json");
+        PrintWriter out= resp.getWriter();
+        out.print(jsonToSend);
+        out.flush();
+        out.close();
+        resp.getWriter().println("eh non ");
 	}
 
 	@Override
@@ -68,12 +74,12 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 			DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 			FilterOperator[] filter ;  
 			// Utilisation Query afin de rassembler les �l�ments a appeler/filter
-			Query query = new Query("AddTraining");
+			Query query = new Query("SearchTraining");
 			String keyword = req.getParameter("q");
-			query.addFilter("ex", Query.FilterOperator.GREATER_THAN_OR_EQUAL, keyword);
+			query.addFilter("ex", Query.FilterOperator.EQUAL, keyword);
 			
 			if(keyword==null){
-				System.out.println("t'es null y a pas de q");
+				System.out.println("keyword nul");
 			}
 			else{
 				System.out.println("q=" + q);
@@ -110,12 +116,15 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 				String title_curr_ex=((String) ex.get("title")).toLowerCase();
 				String heure = (String) ex.get("heure");
 				String minute = (String) ex.get("minute");
+				String description = (String) ex.get("description");
+
 				JSONObject jsonCurrEX = new JSONObject();
 				if(title_curr_ex.contains((CharSequence) ((String) jsonReceive.get("q")).toLowerCase())){
 					title_ex_ds[k] = title_curr_ex;
 					jsonCurrEX.put("title", title_curr_ex);
 					jsonCurrEX.put("heure", heure);
 					jsonCurrEX.put("minute", minute);
+					jsonCurrEX.put("description", description);
 					jsonExTitle.put("ex"+k, jsonCurrEX);
 
 					k++;
@@ -129,7 +138,7 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 //			}
 			
 			
-			query = new Query("AddTraining");
+			query = new Query("SearchTraining");
 			query.addFilter("title", Query.FilterOperator.GREATER_THAN_OR_EQUAL, req.getParameter("q"));
 
 			// R�cup�ration du r�sultat de la requ�te � l�aide de PreparedQuery 
@@ -142,10 +151,13 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 				title_plan = ((String) result.getProperty("title")).toLowerCase();  
 				String heure = (String) result.getProperty("heure");
 				String minute = (String) result.getProperty("minute");
+				String description = (String) result.getProperty("description");
+
 				if(title_plan.contains((CharSequence) ((String) jsonReceive.get("q")).toLowerCase())){
 					planTitleTime.put("title", title_plan);
 					planTitleTime.put("heure",heure);
 					planTitleTime.put("minute",minute);
+					planTitleTime.put("description",description);
 
 					jsonPlan.put("plan"+nbplan, planTitleTime);
 					nbplan++;
@@ -156,14 +168,12 @@ public class SearchDataStoreServlet2 extends HttpServlet{
 			
 			jsonToSend= new JSONObject();
 			
-			
 			if(jsonExo != null){
 				if(jsonExTitle!=null){
 					jsonToSend.put("title_exo_found",jsonExTitle);
 				}
 			}else{
 				System.out.println("jsonex null");
-				
 			}
 			if(jsonPlan != null){
 				jsonToSend.put("title_plan_found",jsonPlan);
